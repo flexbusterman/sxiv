@@ -114,8 +114,8 @@ static const keymap_t keys[] = {
 	{ 0,		XK_Right,	t_move_sel,		DIR_RIGHT },
 
 	    			/* Scaling */
-	{ 0,		XK_W,		i_fit_to_win,		SCALE_DOWN },
-//	{ 0,		XK_w,		i_fit_to_win,		SCALE_FIT },
+	/* { 0,		XK_W,		i_fit_to_win,		SCALE_DOWN }, */
+	{ 0,		XK_w,		i_fit_to_win,		SCALE_FIT },
 	{ 0,		XK_0,		i_fit_to_win,		SCALE_FIT },
 	{ 0,		XK_9,		i_fit_to_win,		SCALE_WIDTH },
 	//temporaly solution to start at the top on SCALE_WIDTH
