@@ -19,6 +19,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sys/wait.h>
 
 #include "sxiv.h"
 #include "config.h"
@@ -126,6 +127,17 @@ cg_reload_image(arg_t _)
 bool
 cg_remove_image(arg_t _)
 {
+	pid_t pid;
+	switch (pid = fork()) {
+	case -1:
+		return false;
+	case 0:
+		if (fork() > 0)
+			_exit(0);
+		execlp("gtrash", "gtrash", "put", files[fileidx].path, (char *) NULL);
+		_exit(1);
+	}
+	waitpid(pid, NULL, 0);
 	remove_file(fileidx, true);
 	if (mode == MODE_IMAGE)
 		load_image(fileidx);
