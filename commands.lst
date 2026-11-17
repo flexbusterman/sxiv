@@ -38,5 +38,6 @@ T_CMD(reload_all)
 
 /* Customs */
 I_CMD(random_navigate)
+I_CMD(editfile)
 G_CMD(dmenu_output)
 //G_CMD(toggle_squarethumb)

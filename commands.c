@@ -585,6 +585,23 @@ ci_random_navigate(arg_t _)
 }
 
 bool
+ci_editfile(arg_t _)
+{
+	pid_t pid;
+	switch (pid = fork()) {
+	case -1:
+		return false;
+	case 0:
+		if (fork() > 0)
+			_exit(0);
+		execlp("editfile", "editfile", files[fileidx].path, (char *) NULL);
+		_exit(1);
+	}
+	waitpid(pid, NULL, 0);
+	return true;
+}
+
+bool
 cg_dmenu_output(arg_t _)
 {
 	printf("%s\n", files[fileidx].name);
